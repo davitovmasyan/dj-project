@@ -43,8 +43,7 @@ EXTERNAL_APPS = [
 ]
 
 PROJECT_APPS = [
-    "core",
-    "accounts",
+    "core.email",
 ]
 
 INSTALLED_APPS.extend(EXTERNAL_APPS + PROJECT_APPS)
@@ -171,3 +170,6 @@ CELERY_TASK_ALWAYS_EAGER = ENV.bool("CELERY_TASK_ALWAYS_EAGER", False)
 CELERY_ROUTES = {
     "accounts.tasks.AsyncEmailTask": {"queue": "accounts"},
 }
+
+# Email settings
+DEFAULT_FROM_EMAIL = "from@example.com"
