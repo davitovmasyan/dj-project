@@ -1,0 +1,41 @@
+version: "2"
+
+services:
+  project_img:
+    build: .
+    image: project:latest
+
+  db:
+    image: postgres:10
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  redis:
+    image: redis:3.2
+    volumes:
+      - redis:/data
+
+  celery:
+    image: project:latest
+    command: celery -A project worker -l info
+    depends_on:
+      - db
+      - redis
+    environment:
+      C_FORCE_ROOT: "1"
+
+  project:
+    image: project:latest
+    command: python manage.py runserver 0:8000
+    volumes:
+      - .:/project
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+      - celery
+
+volumes:
+  db:
+  redis:

@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "/usr/bin/python3.6",
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "flake8",
+    "python.linting.pylintEnabled": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/__pycache__/": true,
+        "**/*.egg-info": true,
+    }
+}
