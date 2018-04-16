@@ -12,7 +12,7 @@ class EmailTestCase(TestCase):
             context={
                 "recipient_name": "Davit",
             },
-            to="davittomasso@gmail.com",
+            to="davitovmasyan@gmail.com",
         )
 
         self.assertEqual(len(mail.outbox), 1)
@@ -20,7 +20,7 @@ class EmailTestCase(TestCase):
         email = mail.outbox[0]
 
         self.assertEqual(email.subject, "Test subject")
-        self.assertEqual(email.to, ["davittomasso@gmail.com"])
+        self.assertEqual(email.to, ["davitovmasyan@gmail.com"])
         self.assertEqual(
             email.body,
             "<h1>Greetings Davit!</h1>",

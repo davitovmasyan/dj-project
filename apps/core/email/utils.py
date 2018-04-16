@@ -32,6 +32,9 @@ def send_email(
     reply_to: Recipient_s = None,
 ):
 
+    if not to:
+        return
+
     body = render_body(template_name, context)
 
     send_async_email.delay(
