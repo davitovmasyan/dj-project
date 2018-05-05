@@ -5,6 +5,11 @@ services:
     build: .
     image: dj-project:latest
 
+  project_app:
+    image: dj-project:latest
+    volumes:
+      - .:/project
+
   db:
     image: postgres:10
     volumes:
@@ -16,25 +21,23 @@ services:
       - redis:/data
 
   celery:
-    image: dj-project:latest
-    command: celery -A project worker -l info
+    extends: project_app
     depends_on:
       - db
       - redis
+    command: ./wait-for-it.sh db:5432 -- celery -A project worker -l info
     environment:
       C_FORCE_ROOT: "1"
 
   project:
-    image: dj-project:latest
-    command: python manage.py runserver 0:8000
-    volumes:
-      - .:/project
-    ports:
-      - "8000:8000"
+    extends: project_app
     depends_on:
       - db
       - redis
       - celery
+    command: ./wait-for-it.sh db:5432 -- python manage.py runserver 0:8000
+    ports:
+      - "8000:8000"
 
 volumes:
   db:
