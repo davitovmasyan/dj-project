@@ -3,7 +3,7 @@ version: "2"
 services:
   project_img:
     build: .
-    image: project:latest
+    image: dj-project:latest
 
   db:
     image: postgres:10
@@ -16,7 +16,7 @@ services:
       - redis:/data
 
   celery:
-    image: project:latest
+    image: dj-project:latest
     command: celery -A project worker -l info
     depends_on:
       - db
@@ -25,7 +25,7 @@ services:
       C_FORCE_ROOT: "1"
 
   project:
-    image: project:latest
+    image: dj-project:latest
     command: python manage.py runserver 0:8000
     volumes:
       - .:/project

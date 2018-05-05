@@ -21,6 +21,11 @@ To jump into container
     $ make shell
     root@<containerid>:/project#
 
+To setup git hooks
+
+    python3 -m pip install -r requirements/requirements-test.txt
+    ln -s ../../pre-commit .git/hooks/pre-commit
+
 To run tests
 
     make test

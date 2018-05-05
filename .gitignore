@@ -1,6 +1,7 @@
-# VS code settings
+# IDEs
 .vscode/*
 !.vscode/settings.json
+.idea
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
