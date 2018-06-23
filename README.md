@@ -30,6 +30,14 @@ To run tests
 
     make test
 
+To see coverage report
+
+    make report
+    
+To build coverage report html
+
+    make report-html
+
 To stop running containers
 
     make stop
