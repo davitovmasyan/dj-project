@@ -39,6 +39,11 @@ services:
     ports:
       - "8000:8000"
 
+  packages:
+    extends: project_app
+    volumes:
+      - .:/host
+
 volumes:
   db:
   redis:

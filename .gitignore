@@ -2,6 +2,7 @@
 .vscode/*
 !.vscode/settings.json
 .idea
+site-packages/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

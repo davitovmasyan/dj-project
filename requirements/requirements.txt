@@ -1,7 +1,8 @@
 Django==2.0.3
+celery[redis]==4.1.0
+django_celery_results==1.0.1
+django-environ==0.4.4
 psycopg2==2.7.4
 psycopg2-binary==2.7.4
 Pillow==5.1.0
-django-environ==0.4.4
-celery[redis]==4.1.0
-django_celery_results==1.0.1
+raven==6.9.0

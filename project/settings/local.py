@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 from .base import * # noqa
 import os
+import raven
 
 
 # Quick-start development settings - unsuitable for production
@@ -171,5 +172,18 @@ CELERY_ROUTES = {
     "accounts.tasks.AsyncEmailTask": {"queue": "accounts"},
 }
 
+# Raven settings
+RAVEN_DSN = ENV.str("RAVEN_DSN", None)
+if RAVEN_DSN:
+    INSTALLED_APPS.append("raven.contrib.django.raven_compat")
+    RAVEN_CONFIG = {
+        "dsn": RAVEN_DSN,
+        "release": raven.fetch_git_sha(os.path.dirname(os.pardir)),
+    }
+
+
 # Email settings
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 DEFAULT_FROM_EMAIL = "from@example.com"
