@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
-from .base import * # noqa
+from .base import *  # noqa
 import os
 import raven
 
@@ -105,6 +105,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": ENV.str("DB_NAME", "postgres"),
         "USER": ENV.str("DB_USER", "postgres"),
+        "PASSWORD": ENV.str("DB_PASSWORD", ""),
         "HOST": ENV.str("DB_HOST", "db"),
         "PORT": ENV.int("DB_PORT", 5432),
     }
