@@ -184,7 +184,9 @@ if RAVEN_DSN:
 
 
 # Email settings
-if DEBUG:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 DEFAULT_FROM_EMAIL = "from@example.com"
+EMAIL_BASE_TEMPLATE = "email/base.html"
+EMAIL_HOST = ENV.str("EMAIL_HOST", "localhost")
+EMAIL_PORT = ENV.int("EMAIL_PORT", 25)
+EMAIL_BACKEND_CONFIG = ENV.str("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
