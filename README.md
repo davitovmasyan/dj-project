@@ -38,6 +38,14 @@ To build coverage report html
 
     make report-html
 
+To check import ordering
+
+    make check-sort
+    
+To fix import ordering
+
+    make sort
+
 To stop running containers
 
     make stop
