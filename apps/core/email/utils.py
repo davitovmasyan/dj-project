@@ -4,7 +4,6 @@ from django.template import loader
 
 from .tasks import send_async_email
 
-
 __all__ = (
     "send_email",
 )

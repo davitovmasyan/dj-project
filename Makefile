@@ -17,5 +17,11 @@ report:
 report-html:
 	docker-compose run --rm project pytest --cov-report html --cov=apps/ --create-db -x --pdb
 
+sort:
+	docker-compose run --rm project isort --recursive apps project
+
+check-sort:
+	docker-compose run --rm project isort --recursive --diff apps project
+
 stop:
 	docker-compose down
