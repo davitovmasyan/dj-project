@@ -1,6 +1,6 @@
 import os
-import environ
 
+import environ
 
 __all__ = (
     "PROJECT_DIR",
