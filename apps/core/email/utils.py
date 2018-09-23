@@ -12,7 +12,7 @@ __all__ = (
 Recipient_s = Union[List[str], Tuple[str], str]
 
 
-def render_body(template_name: str, context: dict = {}) -> str:
+def render_body(template_name: str, context: dict = None) -> str:
     """
     Load template by given name, pass it context
     and render as a string.
