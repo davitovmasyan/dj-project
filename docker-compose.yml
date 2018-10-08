@@ -9,6 +9,8 @@ services:
     image: dj-project:latest
     volumes:
       - .:/project
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db/postgres
 
   db:
     image: postgres:10

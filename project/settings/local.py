@@ -102,14 +102,7 @@ WSGI_APPLICATION = "project.wsgi.application"
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": ENV.str("DB_NAME", "postgres"),
-        "USER": ENV.str("DB_USER", "postgres"),
-        "PASSWORD": ENV.str("DB_PASSWORD", ""),
-        "HOST": ENV.str("DB_HOST", "db"),
-        "PORT": ENV.int("DB_PORT", 5432),
-    }
+    "default": ENV.db_url("DATABASE_URL", default="sqlite://:memory:"),
 }
 
 
