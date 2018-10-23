@@ -11,6 +11,7 @@ services:
       - .:/project
     environment:
       DATABASE_URL: postgres://postgres:postgres@db/postgres
+      IPYTHONDIR: /project/.ipython/
 
   db:
     image: postgres:10

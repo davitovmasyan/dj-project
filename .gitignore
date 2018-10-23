@@ -2,7 +2,6 @@
 .vscode/*
 !.vscode/settings.json
 .idea
-site-packages/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -79,3 +78,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Project specific
+site-packages/
+.ipython/
