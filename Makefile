@@ -9,13 +9,13 @@ shell:
 	docker-compose run --rm project /bin/bash
 
 test:
-	docker-compose run --rm project pytest --create-db -x --pdb
+	docker-compose run --rm project pytest -x -vvv --pdb
 
 report:
-	docker-compose run --rm project pytest --cov=apps/ --create-db -x --pdb
+	docker-compose run --rm project pytest --cov=apps/ -x --pdb
 
 report-html:
-	docker-compose run --rm project pytest --cov-report html --cov=apps/ --create-db -x --pdb
+	docker-compose run --rm project pytest --cov-report html --cov=apps/ -x --pdb
 
 sort:
 	docker-compose run --rm project isort --recursive apps project
