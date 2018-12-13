@@ -1,0 +1,7 @@
+---
+
+- name: restart_uwsgi_handler
+  become: true
+  service:
+    name: uwsgi
+    state: restarted

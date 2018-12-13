@@ -1,0 +1,16 @@
+---
+
+- name: Install docker
+  become: true
+  apt:
+    name: "docker.io"
+  tags:
+    - docker
+
+- name: Ensure ubuntu is added to the docker group
+  user:
+    name: "ubuntu"
+    groups: docker
+    append: true
+  tags:
+  - docker

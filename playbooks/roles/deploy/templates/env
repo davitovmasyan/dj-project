@@ -1,0 +1,8 @@
+DEBUG={{ app_debug }}
+SECRET_KEY={{ app_secret_key }}
+ALLOWED_HOSTS={{ app_allowed_hosts }}
+
+INTERNAL_IPS=127.0.0.1
+ENABLE_DEBUG_TOOLBAR={{ app_debug_toolbar }}
+CELERY_TASK_ALWAYS_EAGER={{ app_celery_eager }}
+REDIS_HOST={{ app_redis_host }}

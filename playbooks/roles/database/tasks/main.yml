@@ -1,0 +1,48 @@
+---
+
+- name: Install PostgreSQL
+  become: true
+  apt:
+    name: postgresql
+  tags:
+    - database
+
+- name: Ensure database is being created
+  become: true
+  become_user: postgres
+  postgresql_db:
+    name: "{{ app_db_name }}"
+  tags:
+    - database
+
+- name: Ensure user has access to database
+  become: true
+  become_user: postgres
+  postgresql_user:
+    db: "{{ app_db_name }}"
+    name: "{{ app_db_user }}"
+    password: "{{ app_db_password }}"
+    priv: ALL
+  tags:
+    - database
+
+- name: Ensure user doesn't have unnecessary privileges
+  become: true
+  become_user: postgres
+  postgresql_user:
+    name: "{{ app_db_user }}"
+    role_attr_flags: NOSUPERUSER,NOCREATEDB
+  tags:
+    - database
+
+- name: Ensure other users can't access the database
+  become: true
+  become_user: postgres
+  postgresql_privs:
+    db: "{{ app_db_name }}"
+    role: PUBLIC
+    type: database
+    priv: ALL
+    state: absent
+  tags:
+    - database

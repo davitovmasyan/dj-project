@@ -1,0 +1,49 @@
+---
+
+- name: Check if mailhog is running
+  become: true
+  raw: "docker ps | grep mailhog"
+  register: mailhog_container
+  ignore_errors: yes
+  tags:
+    - mailhog
+
+- name: Run mailhog inside docker
+  command: "docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog"
+  when: mailhog_container.stdout == ""
+  tags:
+    - mailhog
+
+- name: Add auth file
+  become: true
+  template:
+    src: templates/auth_file
+    dest: "/etc/nginx/.mailhogpass"
+  tags:
+    - mailhog
+
+- name: Add Nginx configuration for mailhog
+  become: true
+  template:
+    src: templates/mailhog.conf
+    dest: "/etc/nginx/sites-available/mailhog"
+  notify: restart_nginx_handler
+  tags:
+    - mailhog
+
+- name: Enable Nginx configuration for mailhog
+  become: true
+  file:
+    src: "/etc/nginx/sites-available/mailhog"
+    dest: "/etc/nginx/sites-enabled/mailhog"
+    state: link
+  notify: restart_nginx_handler
+  tags:
+    - mailhog
+
+- name: Reload nginx to activate default configuration
+  service:
+    name: nginx
+    state: restarted
+  tags:
+    - mailhog
