@@ -1,0 +1,37 @@
+---
+
+- name: Install Nginx
+  become: true
+  apt:
+    name: nginx
+    state: latest
+  notify: restart_nginx_handler
+  tags:
+    - webserver
+
+- name: Add Nginx configuration
+  become: true
+  template:
+    src: templates/default.conf
+    dest: "/etc/nginx/sites-available/default"
+  notify: restart_nginx_handler
+  tags:
+    - webserver
+
+- name: Enable Nginx configuration
+  become: true
+  file:
+    src: "/etc/nginx/sites-available/default"
+    dest: "/etc/nginx/sites-enabled/default"
+    state: link
+  notify: restart_nginx_handler
+  tags:
+    - webserver
+
+
+- name: Reload nginx to activate default configuration
+  service:
+    name: nginx
+    state: restarted
+  tags:
+    - webserver

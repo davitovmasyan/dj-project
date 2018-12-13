@@ -1,0 +1,43 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+
+  vars_files:
+  - ./vars/vars.yml
+
+  pre_tasks:
+
+  - name: Install python2 for ansible
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+    changed_when: False
+
+  - name: Update APT cache
+    become: true
+    apt:
+      update_cache: true
+      cache_valid_time: 3600
+      force_apt_get: true
+
+  - name: Upgrade installed packages
+    become: true
+    apt:
+      upgrade: safe
+      force_apt_get: true
+
+  - name: Install system packages
+    become: true
+    apt:
+      name: ["software-properties-common", "git", "vim", "curl"]
+
+  roles:
+  - python
+  - database
+  - redis
+  - deploy
+  - uwsgi
+  - nginx
+  - docker
+  - mailhog

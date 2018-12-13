@@ -1,0 +1,22 @@
+---
+
+app_root_dir: "/var/www/project"
+app_venv_dir: "{{ app_root_dir }}/venv"
+app_log_dir: "{{ app_root_dir }}/log"
+app_run_dir: "{{ app_root_dir }}/run"
+
+app_repo_remote: "remote_url"
+app_repo_branch: "master"
+
+app_db_name: "db"
+app_db_user: "user"
+app_db_password: "password"
+
+mailhog_server_name: "mailhog.{{ server_name }}"
+
+app_debug: ""
+app_secret_key: ""
+app_allowed_hosts: ""
+app_debug_toolbar: ""
+app_celery_eager: ""
+app_redis_host: ""

@@ -1,0 +1,17 @@
+[Unit]
+Description = uWSGI instance to serve project
+After = network.target
+
+[Service]
+User = www-data
+Group = www-data
+WorkingDirectory = {{ app_root_dir }}
+ExecStart = {{ app_venv_dir }}/bin/uwsgi --ini /etc/uwsgi/apps-enabled/app.ini
+Restart = always
+KillSignal = SIGQUIT
+Type = notify
+NotifyAccess = all
+StandardError = syslog
+
+[Install]
+WantedBy = multi-user.target

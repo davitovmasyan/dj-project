@@ -1,0 +1,57 @@
+---
+
+- name: Install uWSGI
+  become: true
+  apt:
+    name: "uwsgi-plugin-python3"
+  tags:
+    - uwsgi
+
+- name: Create uWSGI directories
+  become: true
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: true
+  with_items:
+  - "/etc/uwsgi/apps-available"
+  - "/etc/uwsgi/apps-enabled"
+  tags:
+    - uwsgi
+
+- name: Add uWSGI configuration
+  template:
+    src: templates/uwsgi.ini
+    dest: "/etc/uwsgi/apps-available/app.ini"
+  tags:
+    - uwsgi
+
+- name: Enable uWSGI configuration
+  become: true
+  file:
+    src: "/etc/uwsgi/apps-available/app.ini"
+    dest: "/etc/uwsgi/apps-enabled/app.ini"
+    state: link
+  tags:
+    - uwsgi
+
+- name: Add uWSGI service
+  template:
+    src: templates/uwsgi.service
+    dest: "/etc/systemd/system/uwsgi.service"
+  tags:
+    - uwsgi
+
+- name: Restart uWSGI service
+  become: true
+  raw: "service uwsgi restart"
+  tags:
+    - uwsgi
+
+- name: Make sure a uWSGI service is running
+  systemd:
+    name: uwsgi
+    enabled: yes
+    state: started
+  tags:
+    - uwsgi

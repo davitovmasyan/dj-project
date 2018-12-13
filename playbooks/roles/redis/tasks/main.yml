@@ -1,0 +1,19 @@
+---
+
+- name: Install Redis
+  become: true
+  apt:
+    name: redis-server
+  tags:
+    - redis
+
+- name: Configure redis
+  lineinfile:
+    dest: "/etc/redis/redis.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: 'supervised no', line: 'supervised systemd' }
+  notify: restart_redis_handler
+  tags:
+    - redis
