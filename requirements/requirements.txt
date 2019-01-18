@@ -1,4 +1,4 @@
-Django==2.1.2
+Django==2.1.5
 celery[redis]==4.2
 django_celery_results==1.0.1
 django-environ==0.4.4
@@ -6,4 +6,3 @@ ipython==7.0.1
 psycopg2==2.7.4
 psycopg2-binary==2.7.4
 Pillow==5.1.0
-raven==6.9.0

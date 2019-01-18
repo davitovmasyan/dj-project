@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 import os
 
-import raven
-
 from .base import *  # noqa
 
 # Quick-start development settings - unsuitable for production
@@ -166,16 +164,6 @@ CELERY_TASK_ALWAYS_EAGER = ENV.bool("CELERY_TASK_ALWAYS_EAGER", False)
 CELERY_ROUTES = {
     "accounts.tasks.AsyncEmailTask": {"queue": "accounts"},
 }
-
-# Raven settings
-RAVEN_DSN = ENV.str("RAVEN_DSN", None)
-if RAVEN_DSN:
-    INSTALLED_APPS.append("raven.contrib.django.raven_compat")
-    RAVEN_CONFIG = {
-        "dsn": RAVEN_DSN,
-        "release": raven.fetch_git_sha(os.path.dirname(os.pardir)),
-    }
-
 
 # Email settings
 
