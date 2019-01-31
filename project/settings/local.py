@@ -150,7 +150,9 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Redis settings
-REDIS_URL = "redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_PATH}".format(
+REDIS_PASSWORD = ENV.str('REDIS_PASSWORD', None)
+REDIS_URL = "redis://{REDIS_PASSWORD}{REDIS_HOST}:{REDIS_PORT}/{REDIS_PATH}".format(
+    REDIS_PASSWORD=":{}@".format(REDIS_PASSWORD) if REDIS_PASSWORD else "",
     REDIS_HOST=ENV.str("REDIS_HOST", "127.0.0.1"),
     REDIS_PORT="6379",
     REDIS_PATH="0",
