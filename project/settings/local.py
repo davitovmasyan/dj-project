@@ -146,6 +146,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "collectstatic")
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 # Redis settings
 REDIS_URL = "redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_PATH}".format(
     REDIS_HOST=ENV.str("REDIS_HOST", "127.0.0.1"),
