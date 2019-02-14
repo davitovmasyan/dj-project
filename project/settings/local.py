@@ -177,3 +177,14 @@ EMAIL_BASE_TEMPLATE = "email/base.html"
 EMAIL_HOST = ENV.str("EMAIL_HOST", "localhost")
 EMAIL_PORT = ENV.int("EMAIL_PORT", 25)
 EMAIL_BACKEND_CONFIG = ENV.str("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
+
+# Sentry Settings
+SENTRY_DSN = ENV.str("SENTRY_DSN", None)
+if SENTRY_DSN:
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+    )
