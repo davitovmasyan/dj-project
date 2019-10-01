@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu:18.04
 
     steps:
     - uses: actions/checkout@v1
@@ -28,4 +28,5 @@ jobs:
       run: |
         mv .env_template .env
         pip install -r requirements/requirements-test.txt
-        pytest -x -vvv --pdb
+        pip install -e .
+        pytest -vvv --cov-report html --cov=apps/
