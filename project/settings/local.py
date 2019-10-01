@@ -43,7 +43,7 @@ EXTERNAL_APPS = [
 ]
 
 PROJECT_APPS = [
-    "core.email",
+    "apps.core.email",
 ]
 
 INSTALLED_APPS.extend(EXTERNAL_APPS + PROJECT_APPS)
