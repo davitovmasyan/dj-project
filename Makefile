@@ -1,6 +1,5 @@
 all:
 	docker-compose build
-	docker-compose run --rm packages cp -r  /usr/local/lib/python3.6/site-packages /host
 
 run:
 	docker-compose up project
