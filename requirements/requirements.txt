@@ -1,4 +1,4 @@
-Django==3.0.1
+Django==3.0.3
 celery[redis]==4.4.0
 django_celery_results==1.1.2
 django-environ==0.4.5
