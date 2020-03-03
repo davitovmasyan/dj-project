@@ -1,6 +1,6 @@
 # Django Project Template
 
-## Python3.7 Django2 Celery4.1 Postgres12 Redis5 Ansible
+## Python3.7 Django3 Celery4 Postgres12 Redis5 Ansible
 
 ## Setup
 
