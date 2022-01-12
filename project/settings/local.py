@@ -23,8 +23,8 @@ SECRET_KEY = ENV.str("SECRET_KEY", "Keep it secret!")
 DEBUG = ENV.bool("DEBUG", True)
 ENABLE_DEBUG_TOOLBAR = DEBUG and ENV.bool("ENABLE_DEBUG_TOOLBAR", False)
 
-ALLOWED_HOSTS = ENV.list("ALLOWED_HOSTS", [])
-INTERNAL_IPS = ENV.list("INTERNAL_IPS", default=("127.0.0.1", ))
+ALLOWED_HOSTS = ENV.list("ALLOWED_HOSTS", default=[])
+INTERNAL_IPS = ENV.list("INTERNAL_IPS", default=("127.0.0.1",))
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
 ]
 
 EXTERNAL_APPS = [
-    "django_celery_results",
+    "django_celery_results.apps.CeleryResultConfig",
 ]
 
 PROJECT_APPS = [
@@ -131,8 +131,6 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 
 USE_I18N = True
-
-USE_L10N = True
 
 USE_TZ = True
 

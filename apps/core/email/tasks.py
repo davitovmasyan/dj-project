@@ -1,17 +1,19 @@
 from typing import List
 
-from celery import task
+import celery
 
 from django.core.mail import EmailMessage
+
+from project.celery import app
 
 __all__ = (
     "send_async_email",
 )
 
 
-@task.task(bind=True)
+@app.task(bind=True)
 def send_async_email(
-    task_object: task.Task,
+    task_object: celery.Task,
     subject: str,
     body: str,
     to: List[str],
