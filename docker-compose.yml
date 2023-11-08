@@ -6,7 +6,7 @@ services:
     image: dj-project:latest
 
   db:
-    image: postgres:12
+    image: postgres:15
     volumes:
       - db:/var/lib/postgresql/data
 
